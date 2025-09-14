@@ -1,0 +1,545 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #1f1f1f;
+  color: #ffffff;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .sidebar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 284px;
+  background: #141414;
+  padding: 20px 0;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+body .sidebar .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 20px 20px 20px;
+  margin-bottom: 20px;
+}
+
+body .sidebar .logo .logo-icon {
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(45deg, #0078d4, #106ebe);
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+body .sidebar .logo h2 {
+  font-size: .8rem;
+}
+
+body .sidebar .nav-item {
+  margin: 4px 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  -webkit-transition: all 0.1s cubic-bezier(0, 0, 1, 1);
+  transition: all 0.1s cubic-bezier(0, 0, 1, 1);
+  border-radius: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: .8rem;
+  border: 1px solid rgba(255, 255, 255, 0);
+}
+
+body .sidebar .nav-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+body .sidebar .nav-item.active {
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: bold;
+}
+
+body .sidebar .nav-item.active ::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  width: 3px;
+  height: 15px;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0);
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
+}
+
+body .sidebar .nav-item.active[data-section="todos"] ::before {
+  background: rgba(242, 102, 255, 0.8);
+}
+
+body .sidebar .nav-item.active[data-section="entretenimiento"] ::before {
+  background: rgba(33, 255, 218, 0.8);
+}
+
+body .sidebar .nav-item.active[data-section="redes"] ::before {
+  background: rgba(33, 185, 255, 0.8);
+}
+
+body .sidebar .nav-item.active[data-section="desarrollo"] ::before {
+  background: rgba(255, 98, 98, 0.8);
+}
+
+body .sidebar .nav-item.active[data-section="productividad"] ::before {
+  background: rgba(255, 184, 33, 0.8);
+}
+
+body .sidebar .nav-item.active[data-section="apuntes"] ::before {
+  background: rgba(255, 102, 33, 0.8);
+}
+
+body .sidebar .nav-item.active .nav-icon svg {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+}
+
+body .sidebar .nav-item.active .nav-icon svg.general {
+  stroke: rgba(242, 102, 255, 0.8);
+}
+
+body .sidebar .nav-item.active .nav-icon svg.entretenimiento {
+  stroke: rgba(33, 255, 218, 0.8);
+}
+
+body .sidebar .nav-item.active .nav-icon svg.redes {
+  stroke: rgba(33, 185, 255, 0.8);
+}
+
+body .sidebar .nav-item.active .nav-icon svg.desarrollo {
+  stroke: rgba(255, 98, 98, 0.8);
+}
+
+body .sidebar .nav-item.active .nav-icon svg.productividad {
+  stroke: rgba(255, 184, 33, 0.8);
+}
+
+body .sidebar .nav-item.active .nav-icon svg.apuntes {
+  stroke: rgba(255, 102, 33, 0.8);
+}
+
+body .sidebar .nav-item .nav-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 15px;
+  height: 15px;
+  margin-right: 12px;
+  border-radius: 3px;
+}
+
+body .sidebar .nav-item .nav-icon svg {
+  -webkit-transition: 100ms ease;
+  transition: 100ms ease;
+  stroke: rgba(255, 255, 255, 0.8);
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+body .sidebar .nav-bottom {
+  margin-top: auto;
+}
+
+body .sidebar .nav-bottom .nav-time {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body .sidebar .nav-bottom .nav-date {
+  text-align: center;
+  font-size: .8rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0px;
+}
+
+body .main-content {
+  margin-left: 250px;
+  padding: 40px 15vw;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+body .main-content .header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+body .main-content .header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+body .main-content .section {
+  margin-bottom: 50px;
+}
+
+body .main-content .section .section-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #ffffff;
+}
+
+body .main-content .section .apps-grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(250px, 1fr))[auto-fill];
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+body .main-content .section .apps-grid .app-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+body .main-content .section .apps-grid .app-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.08);
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+  -webkit-box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+body .main-content .section .apps-grid .app-card.minimum {
+  padding: 10px;
+}
+
+body .main-content .section .apps-grid .app-card.minimum .app-header {
+  margin-bottom: 0px;
+}
+
+body .main-content .section .apps-grid .app-card.double {
+  grid-row: span 2;
+}
+
+body .main-content .section .apps-grid .app-card .app-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 12px;
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  margin-right: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  background-size: 24px 24px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background: 141414;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.google {
+  background-image: url("https://www.google.com/favicon.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.trello {
+  background-image: url("favicons/trello.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.microsoft365 {
+  background-image: url("https://res.cdn.office.net/officehub/images/content/images/favicon_copilot-4370172aa6.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.twitch {
+  background-image: url("https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.figma {
+  background-image: url("https://static.figma.com/app/icon/1/favicon.png");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.obsidian {
+  background-image: url("https://obsidian.md/favicon.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.openvpn {
+  background-image: url("https://openvpn.net/favicon.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.discord {
+  background-image: url("https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6266bc493fb42d4e27bb8393_847541504914fd33810e70a0ea73177e.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.vscode {
+  background-image: url("./favicons/vscode.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.proton {
+  background-image: url("https://www.proton.me/favicon.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.youtube {
+  background-image: url("https://www.youtube.com/favicon.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.reddit {
+  background-image: url("https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.gmail {
+  background-image: url("https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.github {
+  background-image: url("https://github.com/favicon.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.stackoverflow {
+  background-image: url("https://stackoverflow.com/favicon.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.codepen {
+  background-image: url("https://codepen.io/favicon.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.netflix {
+  background-image: url("https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.spotify {
+  background-image: url("https://open.spotify.com/favicon.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.amazon {
+  background-image: url("https://www.amazon.com/favicon.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.twitter {
+  background-image: url("https://abs.twimg.com/favicons/twitter.2.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.instagram {
+  background-image: url("./favicons/instagram.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.linkedin {
+  background-image: url("https://static.licdn.com/aero-v1/sc/h/al2o9zrvru7aqj8e1x2rzsrca");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.notion {
+  background-image: url("./favicons/notion.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.figma {
+  background-image: url("https://static.figma.com/app/icon/1/favicon.png");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.canva {
+  background-image: url("https://www.canva.com/favicon.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.chatgpt {
+  background-image: url("https://chat.openai.com/favicon.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.claude {
+  background-image: url("https://claude.ai/favicon.ico");
+}
+
+body .main-content .section .apps-grid .app-card .app-header .app-icon.gemini {
+  background-image: url("https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg");
+}
+
+body .main-content .section .apps-grid .app-card .app-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+body .main-content .section .apps-grid .app-card .app-description {
+  font-size: 13px;
+  color: #b3b3b3;
+  line-height: 1.4;
+}
+
+body .install-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #0078d4;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+}
+
+body .install-button:hover {
+  background: #106ebe;
+}
+
+body .hidden {
+  display: none !important;
+}
+
+body .google-search-container {
+  margin: 30px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .google-search-container .google-search-form {
+  width: 100%;
+  max-width: 600px;
+}
+
+body .google-search-container .google-search-form .google-search-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  padding: 12px 20px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+body .google-search-container .google-search-form .google-search-box:focus-within {
+  border-color: #4285f4;
+  -webkit-box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
+          box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+body .google-search-container .google-search-form .google-search-box .google-logo {
+  background: linear-gradient(45deg, #4285f4, #34a853, #fbbc05, #ea4335);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 15px;
+  font-family: "Arial", sans-serif;
+}
+
+body .google-search-container .google-search-form .google-search-box .google-search-input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 16px;
+  padding: 8px 0;
+}
+
+body .google-search-container .google-search-form .google-search-box .google-search-input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body .google-search-container .google-search-form .google-search-box .google-search-input:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body .google-search-container .google-search-form .google-search-box .google-search-input::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body .google-search-container .google-search-form .google-search-box .google-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+body .google-search-container .google-search-form .google-search-box .google-search-btn {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .google-search-container .google-search-form .google-search-box .google-search-btn:hover {
+  background: rgba(66, 133, 244, 0.2);
+  color: #4285f4;
+}
+/*# sourceMappingURL=style.css.map */

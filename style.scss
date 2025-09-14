@@ -1,0 +1,383 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #1f1f1f;
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+
+        width: 284px;
+        background: #141414;
+        padding: 20px 0;
+        position: fixed;
+        height: 100vh;
+        overflow-y: auto;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            padding: 0 20px 20px 20px;
+            margin-bottom: 20px;
+
+
+            .logo-icon {
+                width: 24px;
+                height: 24px;
+                background: linear-gradient(45deg, #0078d4, #106ebe);
+                border-radius: 4px;
+                margin-right: 10px;
+            }
+
+            h2 {
+                font-size: .8rem;
+            }
+        }
+
+        .nav-item {
+            margin: 4px 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.1s cubic-bezier(0,0,1,1);
+            border-radius: 15px;
+
+            display: flex;
+            align-items: center;
+
+            font-size: .8rem;
+            border: 1px solid rgba(255,255,255,0);
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255,255,255,0.1);
+            }
+
+            &.active {
+                background: #1a1a1a;
+                border: 1px solid rgba(255,255,255,0.1);
+                font-weight: bold;
+
+                ::before {
+                    content: '';
+                    position: absolute;
+                    left: 5px;
+                    width: 3px;
+                    height: 15px;
+                    border-radius: 1px;
+                    background: rgba(255, 255, 255, 0);
+
+                    transition: 100ms ease;
+                }
+
+
+                &[data-section="todos"] {
+                    ::before {
+                        background: rgba(242, 102, 255, 0.8);
+                    }
+                }
+                &[data-section="entretenimiento"] {
+                    ::before {
+                        background: rgba(33, 255, 218, 0.8);
+                    }
+                }
+                &[data-section="redes"] {
+                    ::before {
+                        background: rgba(33, 185, 255, 0.8);
+                    }
+                }
+                &[data-section="desarrollo"] {
+                    ::before {
+                        background: rgba(255, 98, 98, 0.8);
+                    }
+                }
+                &[data-section="productividad"] {
+                    ::before {
+                        background: rgba(255, 184, 33, 0.8);
+                    }
+                }
+                &[data-section="apuntes"] {
+                    ::before {
+                        background: rgba(255, 102, 33, 0.8);
+                    }
+                }
+
+                .nav-icon svg {
+                    
+
+                    &.general {stroke: rgba(242, 102, 255, 0.8);}
+                    &.entretenimiento {stroke: rgba(33, 255, 218, 0.8);}
+                    &.redes {stroke: rgba(33, 185, 255, 0.8);}
+                    &.desarrollo {stroke: rgba(255, 98, 98, 0.8);}
+                    &.productividad {stroke: rgba(255, 184, 33, 0.8);}
+                    &.apuntes {stroke: rgba(255, 102, 33, 0.8)}
+                    transform: scale(1.1);
+                }
+            }
+
+            .nav-icon {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                svg {
+                    transition: 100ms ease;
+                    stroke: rgba(255,255,255,0.8);
+                    transform: scale(1);
+                }   
+
+                width: 15px;
+                height: 15px;
+                margin-right: 12px;
+                border-radius: 3px;
+            }
+        }
+
+        .nav-bottom {
+            margin-top: auto;
+            .nav-time {
+                text-align: center;
+                font-size: 1.2rem;
+                font-weight: 600;
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            .nav-date {
+                text-align: center;
+                font-size: .8rem;
+                color: rgba(255,255,255,0.6);
+                margin-top: 0px;
+            }
+        }
+    }
+
+    .main-content {
+        margin-left: 250px;
+        padding: 40px 15vw;
+        flex: 1;
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+
+            h1 {
+                font-size: 32px;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+        }
+
+        .section {
+            margin-bottom: 50px;
+
+            .section-title {
+                font-size: 24px;
+                font-weight: 600;
+                margin-bottom: 25px;
+                color: #ffffff;
+            }
+
+            .apps-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 10px;
+                margin-bottom: 40px;
+
+                .app-card {
+                    background: rgba(255, 255, 255, 0.05);
+                    border: 1px solid rgba(255, 255, 255, 0.3);
+                    border-radius: 8px;
+                    padding: 20px;
+                    cursor: pointer;
+                    transition: all 0.1s ease;
+                    text-decoration: none;
+                    color: inherit;
+                    display: block;
+
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.08);
+                        border-color: rgba(255, 255, 255, 0.08);
+                        transform: translateY(-2px);
+                        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+                    }
+
+                    &.minimum {
+                        padding: 10px;
+
+                        .app-header {
+                            margin-bottom: 0px;
+                        }
+                    }
+
+                    &.double {
+                        grid-row: span 2;
+                    }
+
+                    .app-header {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 12px;
+
+                        .app-icon {
+                            width: 40px;
+                            height: 40px;
+                            border-radius: 6px;
+                            margin-right: 15px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-size: 18px;
+                            font-weight: bold;
+                            background-size: 24px 24px;
+                            background-repeat: no-repeat;
+                            background-position: center;
+                            background: 141414;
+
+                            border: 1px solid rgba(255,255,255,0.06);
+
+                            &.google { background-image: url("https://www.google.com/favicon.ico"); }
+                            &.trello { background-image: url("favicons/trello.ico"); }
+                            &.microsoft365 { background-image: url("https://res.cdn.office.net/officehub/images/content/images/favicon_copilot-4370172aa6.ico"); }
+                            &.twitch { background-image: url("https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png"); }
+                            &.figma { background-image: url("https://static.figma.com/app/icon/1/favicon.png"); }
+                            &.obsidian { background-image: url("https://obsidian.md/favicon.ico"); }
+                            &.openvpn { background-image: url("https://openvpn.net/favicon.ico"); }
+                            &.discord { background-image: url("https://cdn.prod.website-files.com/6257adef93867e50d84d30e2/6266bc493fb42d4e27bb8393_847541504914fd33810e70a0ea73177e.ico"); }
+                            &.vscode { background-image: url("./favicons/vscode.ico"); }
+                            &.proton { background-image: url("https://www.proton.me/favicon.ico"); }
+                            &.youtube { background-image: url("https://www.youtube.com/favicon.ico"); }
+                            &.reddit { background-image: url("https://www.redditstatic.com/desktop2x/img/favicon/android-icon-192x192.png"); }
+                            &.gmail { background-image: url("https://ssl.gstatic.com/ui/v1/icons/mail/rfr/gmail.ico"); }
+                            &.github { background-image: url("https://github.com/favicon.ico"); }
+                            &.stackoverflow { background-image: url("https://stackoverflow.com/favicon.ico"); }
+                            &.codepen { background-image: url("https://codepen.io/favicon.ico"); }
+                            &.netflix { background-image: url("https://assets.nflxext.com/us/ffe/siteui/common/icons/nficon2016.ico"); }
+                            &.spotify { background-image: url("https://open.spotify.com/favicon.ico"); }
+                            &.amazon { background-image: url("https://www.amazon.com/favicon.ico"); }
+                            &.twitter { background-image: url("https://abs.twimg.com/favicons/twitter.2.ico"); }
+                            &.instagram { background-image: url("./favicons/instagram.ico"); }
+                            &.linkedin { background-image: url("https://static.licdn.com/aero-v1/sc/h/al2o9zrvru7aqj8e1x2rzsrca"); }
+                            &.notion { background-image: url("./favicons/notion.ico"); }
+                            &.figma { background-image: url("https://static.figma.com/app/icon/1/favicon.png"); }
+                            &.canva { background-image: url("https://www.canva.com/favicon.ico"); }
+                            &.chatgpt { background-image: url("https://chat.openai.com/favicon.ico"); }
+                            &.claude { background-image: url("https://claude.ai/favicon.ico"); }
+                            &.gemini { background-image: url("https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg"); }
+                        }
+                    }
+
+                    .app-title {
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: #ffffff;
+                    }
+
+                    .app-description {
+                        font-size: 13px;
+                        color: #b3b3b3;
+                        line-height: 1.4;
+                    }
+                }
+            }
+        }
+    }
+
+    .install-button {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #0078d4;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background 0.3s ease;
+
+        &:hover {
+            background: #106ebe;
+        }
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    .google-search-container {
+        margin: 30px 0;
+        display: flex;
+        justify-content: center;
+
+        .google-search-form {
+            width: 100%;
+            max-width: 600px;
+
+            .google-search-box {
+                display: flex;
+                align-items: center;
+                background: rgba(255, 255, 255, 0.08);
+                border: 2px solid rgba(255, 255, 255, 0.1);
+                border-radius: 25px;
+                padding: 12px 20px;
+                transition: all 0.3s ease;
+
+                &:focus-within {
+                    border-color: #4285f4;
+                    box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.2);
+                    background: rgba(255, 255, 255, 0.12);
+                }
+
+                .google-logo {
+                    background: linear-gradient(45deg, #4285f4, #34a853, #fbbc05, #ea4335);
+                    background-clip: text;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    font-weight: bold;
+                    font-size: 20px;
+                    margin-right: 15px;
+                    font-family: "Arial", sans-serif;
+                }
+
+                .google-search-input {
+                    flex: 1;
+                    background: transparent;
+                    border: none;
+                    outline: none;
+                    color: white;
+                    font-size: 16px;
+                    padding: 8px 0;
+
+                    &::placeholder {
+                        color: rgba(255, 255, 255, 0.6);
+                    }
+                }
+
+                .google-search-btn {
+                    background: transparent;
+                    border: none;
+                    color: rgba(255, 255, 255, 0.7);
+                    cursor: pointer;
+                    padding: 8px;
+                    border-radius: 50%;
+                    transition: all 0.2s ease;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    &:hover {
+                        background: rgba(66, 133, 244, 0.2);
+                        color: #4285f4;
+                    }
+                }
+            }
+        }
+    }
+}
